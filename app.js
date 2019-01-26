@@ -4,9 +4,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const compress = require('compression');
 const cors = require('cors');
-const { Client } = require('pg');
-
-const client = new Client({ connectionString: process.env.DATABASE_URL });
+// const { Client } = require('pg');
+// const client = new Client({ connectionString: process.env.DATABASE_URL });
 
 const app = express();
 
@@ -14,7 +13,7 @@ const app = express();
 app.use(
   morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'common', {
     skip: () => process.env.NODE_ENV === 'test',
-  }),
+  })
 );
 
 // Boilerplate configuration
@@ -22,7 +21,7 @@ app.use(helmet());
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-  }),
+  })
 );
 app.use(compress());
 app.use(express.json());
@@ -55,9 +54,9 @@ if (require.main === module) {
     .listen(process.env.PORT || 8080, function() {
       console.info(`Server listening on ${this.address().port}`);
     })
-    .on('error', err => {
+    .on('error', (err) => {
       console.error(err);
     });
 }
 
-module.exports = client;
+// module.exports = client;
