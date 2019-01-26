@@ -4,8 +4,9 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const compress = require('compression');
 const cors = require('cors');
-// const { Client } = require('pg');
-// const client = new Client({ connectionString: process.env.DATABASE_URL });
+const { Client } = require('pg');
+
+const client = new Client({ connectionString: process.env.DATABASE_URL });
 
 const app = express();
 
@@ -59,4 +60,4 @@ if (require.main === module) {
     });
 }
 
-// module.exports = client;
+module.exports = client;
