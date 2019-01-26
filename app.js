@@ -6,6 +6,8 @@ const compress = require('compression');
 const cors = require('cors');
 const { Client } = require('pg');
 
+const MOCK_DATA = require('./data');
+
 const client = new Client({ connectionString: process.env.DATABASE_URL });
 
 const app = express();
@@ -28,8 +30,8 @@ app.use(compress());
 app.use(express.json());
 
 // ROUTES HERE
-app.get('/', async (req, res, next) => {
-  return res.json({ hello: 'world' });
+app.get('/locations', async (req, res, next) => {
+  return res.json(MOCK_DATA);
 });
 
 // Custom 404 Not Found route handler
